@@ -1,0 +1,11 @@
+.git
+.idea
+.pytest_cache
+flake-report
+htmlcov
+venv
+.coverage
+.dockerignore
+.gitignore
+**/__pycache__
+*.pyc
