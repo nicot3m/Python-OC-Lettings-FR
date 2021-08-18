@@ -6,6 +6,7 @@ description: |
 
 orbs:
   python: circleci/python@1.4.0
+  docker: circleci/docker@1.6.0
   heroku: circleci/heroku@1.2.6
 
 
@@ -24,8 +25,23 @@ jobs:
       - run:
           command: flake8
           name: run flake8
+  
+    steps:
+      - checkout
+      - run:
+          command: 
+          name: run pytest
 
 workflows:
   master:
     jobs:
       - build-and-test
+      
+      - docker/publish:
+          requires:
+            - build-and-test
+          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+          tag: latest,$CIRCLE_SHA1
+          filters:
+            branches:
+              only: master
