@@ -33,7 +33,7 @@ workflows:
       - docker/publish:
           requires:
             - build-and-test
-          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+          image: $DOCKER_LOGIN/$PROJECT_REPONAME
           tag: latest,$CIRCLE_SHA1
           filters:
             branches:
