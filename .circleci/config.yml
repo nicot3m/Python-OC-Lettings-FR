@@ -12,6 +12,7 @@ orbs:
 
 jobs:
   build-and-test:
+    executor: python/default
     steps:
       - checkout
       - python/install-packages:
