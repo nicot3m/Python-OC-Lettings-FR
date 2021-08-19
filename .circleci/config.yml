@@ -34,7 +34,7 @@ workflows:
           requires:
             - build-and-test
           image: $DOCKER_LOGIN/$PROJECT_REPONAME
-          tag: latest,$CIRCLE_SHA1
+          tag: $CIRCLE_SHA1
           # Publish to dockerhub only if branch master
           filters:
             branches:
