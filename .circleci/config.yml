@@ -34,13 +34,12 @@ jobs:
           command: >
             echo "Please wait for deployment."
       - heroku/deploy-via-git:
-          parameters:
-              app-name:
-                  default: $HEROKU_APP_NAME
-                  type: string
-              api-key:
-                  default: HEROKU_API_KEY
-                  type: env_var_name
+          app-name:
+              default: $HEROKU_APP_NAME
+              type: string
+          api-key:
+              default: HEROKU_API_KEY
+              type: env_var_name
 
 workflows:
   master:
