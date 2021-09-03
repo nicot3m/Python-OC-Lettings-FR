@@ -31,16 +31,16 @@ jobs:
       # Install the Heroku CLI only if not already installed in the system.
       - heroku/install
       - run:
-        command: >
+          command: >
             echo "Please wait for deployment."
       - heroku/deploy-via-git:
-        parameter:
-          app-name:
-            default: $HEROKU_APP_NAME
-            type: string
-          api-key:
-            default: HEROKU_API_KEY
-            type: env_var_name
+          parameter:
+              app-name:
+                  default: $HEROKU_APP_NAME
+                  type: string
+              api-key:
+                  default: HEROKU_API_KEY
+                  type: env_var_name
 
 workflows:
   master:
@@ -48,19 +48,19 @@ workflows:
       - build-and-test
       
       - docker/publish:
-        requires:
-          - build-and-test
-        image: $DOCKER_LOGIN/$PROJECT_REPONAME
-        tag: $CIRCLE_SHA1
-        # Publish to dockerhub only if branch master
-        filters:
-          branches:
-            only: master
+          requires:
+            - build-and-test
+          image: $DOCKER_LOGIN/$PROJECT_REPONAME
+          tag: $CIRCLE_SHA1
+          # Publish to dockerhub only if branch master
+          filters:
+            branches:
+              only: master
       - deploy_heroku:
-        requires:
-          - build-and-test
-        jobs:
-          - deploy
-        filters:
-          branches:
-            only: master
+          requires:
+            - build-and-test
+          jobs:
+            - deploy
+          filters:
+            branches:
+              only: master
