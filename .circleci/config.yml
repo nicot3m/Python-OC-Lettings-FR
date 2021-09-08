@@ -53,7 +53,7 @@ workflows:
               only: master
       - deploy_heroku:
           requires:
-            - build-and-test
+            - docker/publish
           filters:
             branches:
               only: master
