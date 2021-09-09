@@ -36,7 +36,7 @@ jobs:
       - heroku/deploy-via-git:
           app-name: $HEROKU_APP_NAME
           api-key: HEROKU_API_KEY
-          DSN_SENTRY: $DSN_SENTRY
+          config:set DSN_SENTRY=$DSN_SENTRY
 
 workflows:
   master:
