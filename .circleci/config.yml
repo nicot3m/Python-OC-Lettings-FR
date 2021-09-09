@@ -33,8 +33,6 @@ jobs:
       - run:
           command: >
             echo "Please wait for deployment."
-          # env:
-            # DSN_SENTRY: $DSN_SENTRY
       - run: heroku config:set DSN_SENTRY=$DSN_SENTRY -a $HEROKU_APP_NAME
       - heroku/deploy-via-git:
           app-name: $HEROKU_APP_NAME
