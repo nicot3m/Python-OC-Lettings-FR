@@ -25,5 +25,8 @@ COPY . /code
 # Define the default port and block access for other applications
 EXPOSE $PORT
 
+# Collect static
+RUN python manage.py collectstatic --noinput
+
 # Setup the executable command in the container
 CMD python manage.py runserver 0.0.0.0:$PORT
