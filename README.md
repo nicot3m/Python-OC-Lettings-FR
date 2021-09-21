@@ -148,6 +148,7 @@ Peut aussi se faire depuis le terminal avec la commande `heroku create oc-lettin
 - Project Settings\Environment Variables\Add Environment Variable
 
 |Name|Description|Note|
+|:---- |:-------|:-----:|
 |DJANGO_SECRET_KEY|Clé secrête Django|Note 1|
 |DOCKER_LOGIN|Votre identifiant DockerHub| |
 |DOCKER_PASSWORD|Votre mot de passe ou token DockerHub |Note 2|
