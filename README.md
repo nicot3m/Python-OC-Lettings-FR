@@ -77,3 +77,65 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 - Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1`
 - Pour sortir de l'environnement virtuel, `deactivate`
 - Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
+
+
+## Déploiement
+
+### Workflow
+
+Déploiement automatique à l'aide du pipeline CircleCI à chaque push du projet dans GitHub en suivant le wokflow suivant:
+1. Récupération du code (checkout)
+2. Installation des packages listés dans requirements.txt avec pip
+3. Lancement des tests avec pytest
+4. Vérification du linting avec flake8
+5. Création du container avec l'image du projet dans le dépôt DockerHub
+6. Déploiement web sous Heroku
+7. Suivi des erreurs et des performances avec Sentry
+
+Remarques:
+- Les étapes 1 à 4 sont lancées par un push sur n'importe quelle branche
+- Un succès aux étapes 1 à 4 est un pré-requis à l'étape 5
+- Un succès à l'étape 5 est un pré-requis à l'étape 6
+- Les étapes 5 à 7 ne sont lancés qu'avec un push de la branche master
+
+
+### Configuration requise
+
+Les comptes suivants sont nécessaires:
+- GitHub
+- CircleCI
+- DockerHub
+- Heroku
+- Sentry
+
+Il est utile d'installer en local les programmes suivants:
+- Docker Desktop or Docker Engine for Linux
+- HerokuCLI
+
+
+### Guide de déploiement
+
+#### Étape1: CircleCI
+
+- Se connecter à CircleCI avec son compte GitHub
+- Menu Projects: rechercher le projet Python-OC-Lettings-FR
+- Set Up Poject: choisir "if you already have.circleci/config.yml" et branche master
+- Project Settings\Environment Variables\Add Environment Variable
+
+|Name|Description|Note|
+|DJANGO_SECRET_KEY|Clé secrête Django|Note 1|
+|DOCKER_LOGIN|Votre identifiant DockerHub| |
+|DOCKER_PASSWORD|Votre mot de passe ou token DockerHub |Note 2|
+|DSN_SENTRY|Votre clé client Sentry|Note 3|
+|HEROKU_API_KEY|Le token Heroku|Note 4|
+|HEROKU_APP_NAME|Le nom de votre appli sous Heroku|Note 5|
+|PROJECT_REPONAME|Le nom du dépôt dans DockerHub|Note 6|
+
+Note:
+1. Pour générer une nouvelle clé secrête Django: `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'`
+2. Pour générer un nouveau token DockerHub: Account Settings\Security\New Access Token
+3. Pour récupérer votre clé client Sentry: Sentry\project\roue dentée pour settings\Client Keys (DSN)
+4. Pour créer un long-term token heroku en production: `heroku authorizations:create -j`
+5. Pour ce projet, le nom oc-lettings-2021 a été choisi
+6. Pour ce projet, le nom oc_lettings_site_build a été choisi
+
