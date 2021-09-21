@@ -81,7 +81,7 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 
 ## Déploiement
 
-### Workflow
+### Workflow CircleCI
 
 Déploiement automatique à l'aide du pipeline CircleCI à chaque push du projet dans GitHub en suivant le wokflow suivant:
 1. Récupération du code (checkout)
@@ -115,7 +115,32 @@ Il est utile d'installer en local les programmes suivants:
 
 ### Guide de déploiement
 
-#### Étape1: CircleCI
+#### Étape1: DockerHub
+
+- Se connecter à Docker
+- Créer un dépôt (Create Repository)
+- Renseigner le nom du dépôt: oc_lettings_site_build
+
+
+#### Étape2: Heroku
+
+- Se connecter à Heroku
+- Cliquer sur New\Create new app
+- Renseigner le nom de l'application: oc-lettings-2021
+
+Remarque:
+Peut aussi se faire depuis le terminal avec la commande `heroku create oc-lettings-2021`
+
+
+#### Étape3: Sentry
+
+- Se connecter à Sentry
+- Menu Projects\Create Project
+- Choisir la plateforme: django
+- Renseigner le nom du projet: oc_lettings_site
+
+
+#### Étape4: CircleCI
 
 - Se connecter à CircleCI avec son compte GitHub
 - Menu Projects: rechercher le projet Python-OC-Lettings-FR
@@ -139,3 +164,15 @@ Note:
 5. Pour ce projet, le nom oc-lettings-2021 a été choisi
 6. Pour ce projet, le nom oc_lettings_site_build a été choisi
 
+
+#### Étape5: Récupérer l'image sur DockerHub et lancer le site en local
+
+- Ouvrir Docker Desktop
+- Récupérer l'image en local: `docker pull your_docker_login/oc_lettings_site_build:tag`
+- Tag is found in DockerHub
+- Lister les images: `docker images`
+- Lancer le container Docker: `docker run -d -p 8000:8000 your_docker_login/oc_lettings_site_build:tag`
+- Tester le site dans votre navigateur: `http://127.0.0.1:8000/`
+- Lister les container Docker lancés: `docker container ps`
+- Arrêter le container: `docker stop CONTAINER ID`
+- Nettoyer: `docker system prune`
