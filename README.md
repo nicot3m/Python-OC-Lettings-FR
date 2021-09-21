@@ -156,6 +156,7 @@ Peut aussi se faire depuis le terminal avec la commande `heroku create oc-lettin
 |HEROKU_API_KEY|Le token Heroku|Note 4|
 |HEROKU_APP_NAME|Le nom de votre appli sous Heroku|Note 5|
 |PROJECT_REPONAME|Le nom du dépôt dans DockerHub|Note 6|
+|DEBUG_VALUE|Debug mode de Django|Note 7|
 
 Note:
 1. Pour générer une nouvelle clé secrête Django: `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'`
@@ -164,7 +165,7 @@ Note:
 4. Pour créer un long-term token heroku en production: `heroku authorizations:create -j`
 5. Pour ce projet, le nom oc-lettings-2021 a été choisi
 6. Pour ce projet, le nom oc_lettings_site_build a été choisi
-
+7. True en développement et False en production
 
 #### Étape5: Récupérer l'image sur DockerHub et lancer le site en local
 
