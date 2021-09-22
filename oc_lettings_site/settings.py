@@ -1,6 +1,8 @@
 import os
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
+from dotenv import load_dotenv
+load_dotenv()  # take environment variables from .env
 
 # Sentry Django integration
 sentry_sdk.init(
@@ -25,6 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', default='default_local_secret_key')
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', default='default_local_secret_key')
 
 # SECURITY WARNING: don't run with debug turned on in production!

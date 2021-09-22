@@ -79,6 +79,15 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 - Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
 
 
+### Variables d'environnement en local
+- **Attention**, pour tester le site refactorisé en local, il est conseillé d'ajouter à la racine du projet le fichier .env
+- Il n'est pas sous GiHhub pour des raisons de sécurité
+- .env contient les variables:
+	- DJANGO_SECRET_KEY
+	- DSN_SENTRY
+	- DEBUG_VALUE
+
+
 ## Déploiement
 
 ### Workflow CircleCI
