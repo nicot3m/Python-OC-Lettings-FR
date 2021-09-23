@@ -2,6 +2,8 @@
 
 Site web d'Orange County Lettings
 
+![logo OC lettings](logo_OC_lettings.png) 
+
 ## Développement local
 
 ### Prérequis
@@ -182,7 +184,7 @@ Note:
 - Récupérer l'image en local: `docker pull your_docker_login/oc_lettings_site_build:tag`
 - Tag is found in DockerHub
 - Lister les images: `docker images`
-- Lancer le container Docker: `docker run -d -p 8000:8000 your_docker_login/oc_lettings_site_build:tag`
+- Lancer le container Docker avec le fichier des variables d'environnement locales: `docker run --env-file .env  -d -p 8000:8000 your_docker_login/oc_lettings_site_build:tag`
 - Tester le site dans votre navigateur: `http://127.0.0.1:8000/`
 - Lister les container Docker lancés: `docker container ps`
 - Arrêter le container: `docker stop CONTAINER ID`
