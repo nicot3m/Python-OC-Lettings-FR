@@ -182,7 +182,7 @@ Note:
 
 - Ouvrir Docker Desktop
 - Récupérer l'image en local: `docker pull your_docker_login/oc_lettings_site_build:tag`
-- Tag is found in DockerHub
+- Tag se trouve dans DockerHub
 - Lister les images: `docker images`
 - Lancer le container Docker avec le fichier des variables d'environnement locales: `docker run --env-file .env  -d -p 8000:8000 your_docker_login/oc_lettings_site_build:tag`
 - Tester le site dans votre navigateur: `http://127.0.0.1:8000/`
